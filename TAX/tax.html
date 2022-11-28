@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Income Tax Calculator</title>
+    <script>
+    //
+    var $ = function (id) {
+    return document.getElementById(id);}
+    //function for the tax calculation
+    var calculate_tax = function() {
+    //total variable for calculating the total
+    var total;
+    //variable for collecting and converting users taxable income
+    var income = parseFloat( $("income").value );
+    $("tax").value =  calcTaxes(income);
+    console.log(tax);
+    function calcTaxes(amount){
+    var calculate = 0;
+    //taxable income >40000
+    if(amount > 40000){
+        tax = (amount - 40000) * .28 + 870.0+(35350-8700)*.15+(89350-36900)*.25;
+    }
+    //taxable income >32333
+    else if( amount > 32333){
+    tax = (amount - 32333) * .25 + 870.0+(32333-8700)*.15;    
+    }
+    //taxable income >24000
+    else if(amount > 24001){
+    tax = (amount - 24001) * .15 + 870.0;
+    }
+    // default taxable income
+    else{
+       tax = amount * .10;
+        }
+    tax += amount * .153;
+    return tax;
+    
+}
+}
+
+//.onload executes a script once a webpage  has loaded
+window.onload = function () {
+    $("calculate").onclick = calculate_tax;
+}
+    </script>
+</head>
+
+<body>
+<section>
+    <h1>Income Tax Calculator</h1>
+
+    <label>Enter taxable income:</label>
+    <input type="text" id="income" />
+    <input type="button" value="Calculate" name="calculate" id="calculate" /><br><br>
+
+    <label>Income tax owed:</label>
+    <input type="text" id="tax"><br>
+
+</section>
+</body>
+</html>
